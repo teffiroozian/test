@@ -132,3 +132,26 @@
   height: 1px;
   background: rgba(0,0,0,0.2);
 }
+
+.portionOptions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.portionButton {
+  border: 2px solid rgba(0, 0, 0, 0.9);
+  background: transparent;
+  color: #000;
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.portionButtonActive {
+  background: #000;
+  color: #fff;
+}
