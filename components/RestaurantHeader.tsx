@@ -3,17 +3,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 
 const DEFAULT_TAGS = [
-  { id: "high-protein", label: "High Protein" },
-  { id: "best-ratio", label: "Best Ratio" },
-  { id: "lowest-cal", label: "Lowest Cal" },
+  { id: "high-protein", label: "High Protein", href: "#high-protein" },
+  { id: "best-ratio", label: "Best Ratio", href: "#best-protein-ratio" },
+  { id: "lowest-cal", label: "Lowest Cal", href: "#lowest-calorie" },
 ];
 
 type TagOption = {
   id: string;
   label: string;
+  href: string;
 };
 
 type RestaurantHeaderProps = {
@@ -22,8 +23,6 @@ type RestaurantHeaderProps = {
   subtitle?: string;
   brandColor: string;
   tags?: TagOption[];
-  initialActiveTag?: string;
-  onTagChange?: (tagId: string) => void;
 };
 
 function hexToRgb(color: string) {
@@ -50,22 +49,11 @@ export default function RestaurantHeader({
   subtitle = "Find the best & smartest high-protein items on the menu.",
   brandColor,
   tags = DEFAULT_TAGS,
-  initialActiveTag,
-  onTagChange,
 }: RestaurantHeaderProps) {
   const resolvedRgb = useMemo(
     () => hexToRgb(brandColor) ?? "59 130 246",
     [brandColor],
   );
-
-  const [activeTag, setActiveTag] = useState(
-    initialActiveTag ?? tags[0]?.id ?? "",
-  );
-
-  const handleTagClick = (tagId: string) => {
-    setActiveTag(tagId);
-    onTagChange?.(tagId);
-  };
 
   return (
     <header
@@ -103,25 +91,15 @@ export default function RestaurantHeader({
         </div>
 
         <div className="flex flex-wrap gap-2">
-          {tags.map((tag) => {
-            const isActive = tag.id === activeTag;
-            return (
-              <button
-                key={tag.id}
-                type="button"
-                onClick={() => handleTagClick(tag.id)}
-                aria-pressed={isActive}
-                className={
-                  "rounded-full border px-4 py-2 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400/60 " +
-                  (isActive
-                    ? "border-black bg-black text-white shadow-sm"
-                    : "border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:text-slate-900")
-                }
-              >
-                {tag.label}
-              </button>
-            );
-          })}
+          {tags.map((tag) => (
+            <Link
+              key={tag.id}
+              href={tag.href}
+              className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-600 transition hover:border-slate-300 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400/60"
+            >
+              {tag.label}
+            </Link>
+          ))}
         </div>
       </div>
     </header>
