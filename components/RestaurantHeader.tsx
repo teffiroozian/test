@@ -57,7 +57,7 @@ export default function RestaurantHeader({
 
   return (
     <header
-      className="border-b border-slate-200/80 bg-[linear-gradient(to_bottom,rgba(var(--brand-rgb),0.08),rgba(var(--brand-rgb),0.02),white)]"
+      className="border-b border-slate-200/80 bg-gradient-to-b from-[rgba(var(--brand-rgb),0.12)] via-[rgba(var(--brand-rgb),0.04)] to-white"
       style={{ "--brand-rgb": resolvedRgb } as CSSProperties}
     >
       <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-6 pb-10 pt-8">
