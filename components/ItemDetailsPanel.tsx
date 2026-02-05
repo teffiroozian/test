@@ -110,7 +110,7 @@ export default function ItemDetailsPanel({
         {variants && variants.length > 0 ? (
           <>
             <div className={styles.detailsDivider} />
-            <div className={styles.detailsRow}>
+            <div className={`${styles.detailsRow} ${styles.portionRow}`}>
               <div className={styles.detailsLabel}>Portion</div>
               <div className={styles.portionOptions}>
                 {variants.map((variant) => {
