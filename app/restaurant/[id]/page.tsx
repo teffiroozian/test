@@ -57,7 +57,7 @@ export default async function RestaurantPage({
         restaurantLogo={restaurant.logo}
       />
 
-      <div id="restaurant-hero">
+      <div id="restaurant-hero" className="mt-6">
         <RestaurantHeader
           name={restaurant.name}
           logo={restaurant.logo}
@@ -68,7 +68,7 @@ export default async function RestaurantPage({
       <main style={{ maxWidth: 900, margin: "24px auto 48px", padding: 16 }}>
 
         {/* Highest Protein */}
-        <section id="high-protein" style={{ marginTop: 80, scrollMarginTop: 140 }}>
+        <section id="high-protein" style={{ marginTop: 96, scrollMarginTop: 220 }}>
           <h2 style={{ fontSize: 32, fontWeight: 800 }}>
             Highest Protein Items
           </h2>
