@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 const HERO_GRADIENTS: Record<string, string> = {
-  chickfila: "from-red-200 via-rose-100 to-orange-100",
+  chickfila: "from-red-200 to-orange-200",
   chipotle: "from-red-200 via-amber-100 to-orange-100",
   panera: "from-amber-200 via-orange-100 to-rose-100",
   mcdonalds: "from-amber-200 via-yellow-100 to-orange-100",
@@ -47,7 +47,7 @@ export default function RestaurantHeader({
   return (
     <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
       <header
-        className={`rounded-xl border border-slate-200/80 bg-gradient-to-br ${gradientClass} shadow-sm`}
+        className={`rounded-3xl border-2 border-slate-800/20 bg-gradient-to-r ${gradientClass} shadow-sm`}
       >
         <div className="flex w-full max-w-5xl flex-col gap-6 px-6 pb-10 pt-8 sm:px-8">
           <Link
