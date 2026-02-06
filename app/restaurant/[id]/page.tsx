@@ -1,8 +1,8 @@
 import Link from "next/link";
-import Image from "next/image";
 import restaurants from "../../data/index.json";
 import RankingList from "@/components/RankingList";
 import GuidedStickyNav from "@/components/GuidedStickyNav";
+import RestaurantHeader from "@/components/RestaurantHeader";
 import type { MenuItem } from "@/types/menu";
 
 // calories per 1g protein (bigger number = more calories for each gram of protein)
@@ -61,36 +61,13 @@ export default async function RestaurantPage({
       />
 
       {/* ✅ Centered page content container */}
-      <main style={{ maxWidth: 900, margin: "48px auto", padding: 16 }}>
-        {/* Non-sticky page header content */}
-        <div style={{ marginTop: 24 }}>
-          <div
-            style={{
-              position: "relative",
-              width: 60,
-              height: 60,
-              marginTop: 24,
-              marginBottom: 6,
-              borderRadius: 12,
-              overflow: "hidden",
-            }}
-          >
-            <Image
-              src={restaurant.logo}
-              alt={`${restaurant.name} logo`}
-              fill
-              style={{ objectFit: "contain" }}
-            />
-          </div>
+      <RestaurantHeader
+        name={restaurant.name}
+        logo={restaurant.logo}
+        restaurantSlug={restaurant.id}
+      />
 
-          <h1 style={{ fontSize: 40, fontWeight: 800, marginTop: 8 }}>
-            {restaurant.name}
-          </h1>
-
-          <p style={{ marginTop: 8, opacity: 0.8 }}>
-            Find the best & smartest high-protein items on the menu.
-          </p>
-        </div>
+      <main style={{ maxWidth: 900, margin: "24px auto 48px", padding: 16 }}>
 
         {/* Highest Protein */}
         <section id="high-protein" style={{ marginTop: 80, scrollMarginTop: 140 }}>
