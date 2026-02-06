@@ -1,7 +1,7 @@
 import Link from "next/link";
 import restaurants from "../../data/index.json";
 import RankingList from "@/components/RankingList";
-import GuidedStickyNav from "@/components/GuidedStickyNav";
+import StickyRestaurantBar from "@/components/StickyRestaurantBar";
 import RestaurantHeader from "@/components/RestaurantHeader";
 import type { MenuItem } from "@/types/menu";
 
@@ -51,21 +51,19 @@ export default async function RestaurantPage({
   const lowestCalorieItems = lowestCalories(items);
 
   return (
-    // ✅ Full width wrapper (this is the single parent React needs)
     <div style={{ width: "100%" }}>
-      {/* ✅ Full-width sticky nav */}
-      <GuidedStickyNav
+      <StickyRestaurantBar
         restaurantName={restaurant.name}
         restaurantLogo={restaurant.logo}
-        containerMaxWidth={900}
       />
 
-      {/* ✅ Centered page content container */}
-      <RestaurantHeader
-        name={restaurant.name}
-        logo={restaurant.logo}
-        restaurantSlug={restaurant.id}
-      />
+      <div id="restaurant-hero">
+        <RestaurantHeader
+          name={restaurant.name}
+          logo={restaurant.logo}
+          restaurantSlug={restaurant.id}
+        />
+      </div>
 
       <main style={{ maxWidth: 900, margin: "24px auto 48px", padding: 16 }}>
 
