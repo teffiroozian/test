@@ -1,7 +1,7 @@
 import Link from "next/link";
 import restaurants from "../../data/index.json";
 import RankingList from "@/components/RankingList";
-import GuidedStickyNav from "@/components/GuidedStickyNav";
+import StickyRestaurantBar from "@/components/StickyRestaurantBar";
 import RestaurantHeader from "@/components/RestaurantHeader";
 import type { MenuItem } from "@/types/menu";
 
@@ -51,26 +51,24 @@ export default async function RestaurantPage({
   const lowestCalorieItems = lowestCalories(items);
 
   return (
-    // ✅ Full width wrapper (this is the single parent React needs)
     <div style={{ width: "100%" }}>
-      {/* ✅ Full-width sticky nav */}
-      <GuidedStickyNav
+      <StickyRestaurantBar
         restaurantName={restaurant.name}
         restaurantLogo={restaurant.logo}
-        containerMaxWidth={900}
       />
 
-      {/* ✅ Centered page content container */}
-      <RestaurantHeader
-        name={restaurant.name}
-        logo={restaurant.logo}
-        restaurantSlug={restaurant.id}
-      />
+      <div id="restaurant-hero" className="mt-6">
+        <RestaurantHeader
+          name={restaurant.name}
+          logo={restaurant.logo}
+          restaurantSlug={restaurant.id}
+        />
+      </div>
 
       <main style={{ maxWidth: 900, margin: "24px auto 48px", padding: 16 }}>
 
         {/* Highest Protein */}
-        <section id="high-protein" style={{ marginTop: 80, scrollMarginTop: 140 }}>
+        <section id="high-protein" style={{ marginTop: 96, scrollMarginTop: 200 }}>
           <h2 style={{ fontSize: 32, fontWeight: 800 }}>
             Highest Protein Items
           </h2>
@@ -85,7 +83,7 @@ export default async function RestaurantPage({
         {/* Best Protein Ratio */}
         <section
           id="best-protein-ratio"
-          style={{ marginTop: 80, scrollMarginTop: 140 }}
+          style={{ marginTop: 80, scrollMarginTop: 200 }}
         >
           <h2 style={{ fontSize: 28, fontWeight: 800 }}>Best Protein Ratio</h2>
 
@@ -99,7 +97,7 @@ export default async function RestaurantPage({
         {/* Lowest Calories */}
         <section
           id="lowest-calorie"
-          style={{ marginTop: 80, scrollMarginTop: 140 }}
+          style={{ marginTop: 80, scrollMarginTop: 200 }}
         >
           <h2 style={{ fontSize: 28, fontWeight: 800 }}>Lowest Calorie Items</h2>
 
