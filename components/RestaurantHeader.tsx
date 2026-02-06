@@ -2,8 +2,17 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import type { CSSProperties } from "react";
-import { useMemo } from "react";
+const HERO_GRADIENTS: Record<string, string> = {
+  chickfila: "from-red-200 via-rose-100 to-orange-100",
+  chipotle: "from-red-200 via-amber-100 to-orange-100",
+  panera: "from-amber-200 via-orange-100 to-rose-100",
+  mcdonalds: "from-amber-200 via-yellow-100 to-orange-100",
+  starbucks: "from-emerald-200 via-green-100 to-lime-100",
+  habit: "from-orange-200 via-amber-100 to-rose-100",
+  panda: "from-rose-200 via-red-100 to-orange-100",
+  mod: "from-slate-200 via-zinc-100 to-stone-100",
+  subway: "from-emerald-200 via-lime-100 to-amber-100",
+};
 
 const DEFAULT_TAGS = [
   { id: "high-protein", label: "High Protein", href: "#high-protein" },
@@ -21,59 +30,24 @@ type RestaurantHeaderProps = {
   name: string;
   logo: string;
   subtitle?: string;
-  brandColor: string;
+  restaurantSlug: string;
   tags?: TagOption[];
 };
-
-function hexToRgb(color: string) {
-  const normalized = color.replace("#", "").trim();
-  if (normalized.length === 3) {
-    const [r, g, b] = normalized.split("");
-    return `${parseInt(`${r}${r}`, 16)} ${parseInt(`${g}${g}`, 16)} ${parseInt(
-      `${b}${b}`,
-      16,
-    )}`;
-  }
-  if (normalized.length === 6) {
-    const r = normalized.slice(0, 2);
-    const g = normalized.slice(2, 4);
-    const b = normalized.slice(4, 6);
-    return `${parseInt(r, 16)} ${parseInt(g, 16)} ${parseInt(b, 16)}`;
-  }
-  return null;
-}
 
 export default function RestaurantHeader({
   name,
   logo,
   subtitle = "Find the best & smartest high-protein items on the menu.",
-  brandColor,
+  restaurantSlug,
   tags = DEFAULT_TAGS,
 }: RestaurantHeaderProps) {
-  const resolvedRgb = useMemo(
-    () => hexToRgb(brandColor) ?? "59 130 246",
-    [brandColor],
-  );
-
-  const warmBlendRgb = useMemo(() => {
-    const [r, g, b] = resolvedRgb.split(" ").map(Number);
-    const blend = (channel: number, target: number, weight = 0.35) =>
-      Math.round(channel * (1 - weight) + target * weight);
-    return `${blend(r, 204)} ${blend(g, 89)} ${blend(b, 27)}`;
-  }, [resolvedRgb]);
+  const gradientClass =
+    HERO_GRADIENTS[restaurantSlug] ?? "from-slate-200 via-slate-100 to-white";
 
   return (
     <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
       <header
-        className="rounded-xl border border-slate-200/80 shadow-sm"
-        style={
-          {
-            "--brand-rgb": resolvedRgb,
-            "--brand-warm-rgb": warmBlendRgb,
-            backgroundImage:
-              "linear-gradient(135deg, rgba(var(--brand-rgb), 0.2), rgba(var(--brand-warm-rgb), 0.2))",
-          } as CSSProperties
-        }
+        className={`rounded-xl border border-slate-200/80 bg-gradient-to-br ${gradientClass} shadow-sm`}
       >
         <div className="flex w-full max-w-5xl flex-col gap-6 px-6 pb-10 pt-8 sm:px-8">
           <Link

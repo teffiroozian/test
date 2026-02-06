@@ -49,17 +49,6 @@ export default async function RestaurantPage({
   const highestProtein = topByProtein(items);
   const bestCalorieProteinRatio = topByCalorieProteinRatio(items);
   const lowestCalorieItems = lowestCalories(items);
-  const brandColorById: Record<string, string> = {
-    chickfila: "#E31937",
-    chipotle: "#9A1B1F",
-    panera: "#5A3C2D",
-    mcdonalds: "#F4B400",
-    starbucks: "#006241",
-    habit: "#F0542D",
-    panda: "#D32F2F",
-    mod: "#2F2D2E",
-    subway: "#0E9E4A",
-  };
 
   return (
     // ✅ Full width wrapper (this is the single parent React needs)
@@ -75,7 +64,7 @@ export default async function RestaurantPage({
       <RestaurantHeader
         name={restaurant.name}
         logo={restaurant.logo}
-        brandColor={brandColorById[restaurant.id] ?? "#3B82F6"}
+        restaurantSlug={restaurant.id}
       />
 
       <main style={{ maxWidth: 900, margin: "24px auto 48px", padding: 16 }}>
