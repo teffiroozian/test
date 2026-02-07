@@ -138,7 +138,7 @@ export default function Home() {
                     onMouseDown={(event) => event.preventDefault()}
                     onClick={() => handleSelect(restaurant.name)}
                   >
-                    <span className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-md bg-neutral-50">
+                    <span className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-lg bg-neutral-50">
                       <Image
                         src={restaurant.logo}
                         alt=""
